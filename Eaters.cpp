@@ -34,7 +34,6 @@ int main() {
     int count = atoi(input.c_str());
 
     for(int i=0; i < count; i++) {
-	int output = 0;
 	std::getline(std::cin, input);
 	istringstream iss(input);
 	std::vector<std::string> tokens{istream_iterator<std::string>{iss},
@@ -42,22 +41,25 @@ int main() {
 	int snake_count = atoi(tokens[0].c_str());
 	int query_count = atoi(tokens[1].c_str());
 	
-	int snakes[snake_count];
-	int queries[query_count];
-	int element_array[snake_count];
+	int snakes[snake_count] = {0};
+	int queries[query_count] = {0};
+	int element_array[snake_count] = {0};
 
 	std::getline(std::cin, input);
 	istringstream instream(input);
 	std::vector<std::string> elements{istream_iterator<std::string>{instream},
 								     istream_iterator<std::string>{}};
 	
-	for(int j = 0; j < snake_count; j++) {
-		element_array[j] = atoi(elements[j].c_str());
-	}
-	
 	for(int j = 0; j < query_count; j++) {
-		std::getline(std::cin, input);
-		queries[query_count] = atoi(input.c_str());
+
+		int output = 0;
+		std::string query;
+		std::getline(std::cin, query);
+		queries[j] = atoi(query.c_str());
+
+		for(int j = 0; j < snake_count; j++) {
+			element_array[j] = atoi(elements[j].c_str());
+		}
 
 		std::vector<int> sorted = abacus_sort(element_array, sizeof(element_array) / sizeof(int));
 
