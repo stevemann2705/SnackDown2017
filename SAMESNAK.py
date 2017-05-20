@@ -1,5 +1,3 @@
-import sys
-
 class SnakePoints:
 
     def __init__(self, x1, y1, x2, y2):
@@ -48,19 +46,22 @@ class SnakePoints:
         return False
 
 
-with open("SAMESNAK.test", "r") as infile:
-    contents = infile.readlines()
+if __name__ == "__main__":
+    contents = []
+    content_length = int(input()) * 2
 
-contents.pop(0)
+    while content_length:
+        contents.append(input())
+        content_length -= 1
 
-for i in range(0, len(contents) - 1,  2):
-    snake_definition_one = contents[i].split()
-    snake_definition_two = contents[i + 1].split()
-    snake_one = SnakePoints(snake_definition_one[0], snake_definition_one[1],
-                            snake_definition_one[2], snake_definition_one[3])
-    snake_two = SnakePoints(snake_definition_two[0], snake_definition_two[1],
-                            snake_definition_two[2], snake_definition_two[3])
-    if snake_one.compare_snakes(snake_two):
-        print("yes")
-    else:
-        print("no")
+    for i in range(0, len(contents) - 1,  2):
+        snake_definition_one = contents[i].split()
+        snake_definition_two = contents[i + 1].split()
+        snake_one = SnakePoints(snake_definition_one[0], snake_definition_one[1],
+                                snake_definition_one[2], snake_definition_one[3])
+        snake_two = SnakePoints(snake_definition_two[0], snake_definition_two[1],
+                                snake_definition_two[2], snake_definition_two[3])
+        if snake_one.compare_snakes(snake_two):
+            print("yes")
+        else:
+            print("no")
