@@ -5,31 +5,44 @@ public class CONSESNK {
 	public static void main(String[] args) {
 		Scanner i = new Scanner(System.in);
 
-		int t = i.nextInt();
-		int n = 0, l, a, b;
-		int res[] = new int[t];
-		int[] arr = null, arr2 = null;
-		for (int z = 0; z < t; z++) {
-			int m = 0, count = 0;
+		int t = i.nextInt(); // number of test cases
+		int n = 0, l, a, b; // standard variables as mentioned in question
+		int res[] = new int[t]; // array to store results
+		int[] arr = null, arr2 = null; // arr is input array and arr2 is expected array
+		
+		/*
+		We will calculate the expected array, which will involve least movements to satisfy all conditions and then 
+		compare it with input array to calculate the number of movements.
+		*/
+		
+		
+		for (int z = 0; z < t; z++) { // loop for each test case
+			int m = 0, count = 0; // m is temporary variable, count is the counter for distance count
+			
+			//Standard Inputs
 			n = i.nextInt();
 			l = i.nextInt();
 			a = i.nextInt();
 			b = i.nextInt();
+			
+			
 			arr = new int[n];
 			arr2 = new int[n];
-			MyMergeSort1 mmsort = new MyMergeSort1();
+			
+			MyMergeSort1 mmsort = new MyMergeSort1(); // object for sorting
 
-			for (int y = 0; y < n; y++) {
+			for (int y = 0; y < n; y++) { //loop for input array
 				arr[y] = i.nextInt();
 			}
 
-			mmsort.sort(arr);
+			mmsort.sort(arr); // sorting input array
 
-			for (int y = 0; y < n; y++) {
+			for (int y = 0; y < n; y++) { //initial expected array (starts from a and goes till the end of sequence for n snakes
 				arr2[y] = a + (l * y);
 				// System.out.print(arr2[y]);
 			}
 
+			//calculating the average of inputs and finding the element closest to the average
 			int avg = (arr[n - 1] + arr[0]) / 2;
 			int myNumber = avg;
 			int distance = Math.abs(arr[0] - myNumber);
@@ -41,13 +54,14 @@ public class CONSESNK {
 					distance = cdistance;
 				}
 			}
-			int theNumber = arr[idx];
+			int theNumber = arr[idx]; //theNumber stores the element closest to average value of inputs, idx has its index
 
 			//System.out.println(theNumber);
 			//System.out.println(idx);
 
+			//altering the expected array for different test cases to minimize distance
 			if (arr[idx] - ((idx) * l) >= a && (arr[idx] + ((n-idx)*l)) <=b) {
-				m = (arr[idx] - ((idx) * l)) - arr2[0]; // 23 - 8 = 15
+				m = (arr[idx] - ((idx) * l)) - arr2[0]; 
 				for (int y = 0; y < n; y++) {
 					arr2[y] += m;
 				}
@@ -67,13 +81,16 @@ public class CONSESNK {
 				//m = (arr[idx] - ((idx) * l)) - arr2[0];
 			}
 			
+			//calculating the distance
 			for (int y = 0; y < n; y++) {
 				count += Math.abs(arr[y] - arr2[y]);
 			}
-
+			
+			//storing result in array
 			res[z] = count;
 		}
 
+		//outputting result
 		for (int z = 0; z < t; z++) {
 			System.out.println(res[z]);
 		}
