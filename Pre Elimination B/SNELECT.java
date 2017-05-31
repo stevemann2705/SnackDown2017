@@ -47,8 +47,8 @@ public class SNELECT {
 
 			}
 			c = s - m;
-			System.out.println("snakes: " + s);
-			System.out.println("mongooses: " + m);
+			//System.out.println("snakes: " + s);
+			//System.out.println("mongooses: " + m);
 			if (c < 0) {
 				res[testcase] = "mongooses";
 			} else if (c > 0) {
