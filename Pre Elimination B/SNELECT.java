@@ -26,19 +26,24 @@ public class SNELECT {
 			L: for (int a = 0; a < len; a++) {
 				if (arr1[0][a] == 's') {
 					s++;
+					//System.out.println("Snake at index " + a + " added.");
 
 				} else if (arr1[0][a] == 'm') {
 					m++;
-
+					//System.out.println("Mongoose at index " + a + " added.");
+					
 					if (a - 1 >= 0 && arr1[0][a - 1] == 's') {
 						if (arr1[1][a - 1] != 'e') {
 							s--;
+							//System.out.println("Snake at index " + (a-1) + " eaten.");
 							arr1[1][a - 1] = 'e';
 						}
 						// continue L;
-					} else if (a + 1 < len && arr1[0][a + 1] == 's') {
+					} 
+					if (a + 1 < len && arr1[0][a + 1] == 's') {
 						if (arr1[1][a + 1] != 'e') {
 							s--;
+							//System.out.println("Snake at index " + (a+1) + " eaten.");
 							arr1[1][a + 1] = 'e';
 							// continue L;
 						}
@@ -46,6 +51,7 @@ public class SNELECT {
 				}
 
 			}
+			
 			c = s - m;
 			//System.out.println("snakes: " + s);
 			//System.out.println("mongooses: " + m);
@@ -64,4 +70,6 @@ public class SNELECT {
 		}
 		i.close();
 	}
+
 }
+
